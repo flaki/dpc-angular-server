@@ -9,12 +9,19 @@ AngularJS test backend
   npm run start {/path/to/www} {optional_port}
 ```
 
+Usage as project dependency:
+```
+  npm install flaki/dpc-angular-server --save-dev
+  node node_modules/dpc-angular-server/server.js ./www
+```
+
 API
 ---
 
 ```
   GET /api
   GET /api/items
+  PUT /api/items
   POST /api/items/:id
   DELETE /api/items/:id
 ```

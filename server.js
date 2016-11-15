@@ -4,7 +4,7 @@ var
   nedb = require('nedb'),
   databaseUrl = path.join(__dirname, 'db/items.db');
 
-var WWW = process.argv[2] || path.join(__dirname, 'www');
+var WWW = path.resolve(process.argv[2]) || path.join(__dirname, 'www');
 var PORT = process.argv[3] || 3000;
 
 var db = {
