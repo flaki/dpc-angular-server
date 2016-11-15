@@ -1,0 +1,19 @@
+{
+  "name": "dpc-angular-server",
+  "description": "DPC Angular Server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "server.js",
+  "node-remote": "<local>",
+  "repository": "ssh+git://git@github.com:flaki/dpc-angular-server.git",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "4.x",
+    "morgan": "^1.6.1",
+    "nedb": "~0.8.0"
+  },
+  "scripts": {
+    "prestart": "npm install",
+    "start": "node server.js"
+  }
+}
