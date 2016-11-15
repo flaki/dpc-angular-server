@@ -1,8 +1,8 @@
 var
-  express = require("express"),
-  path = require("path"),
+  express = require('express'),
+  path = require('path'),
   nedb = require('nedb'),
-  databaseUrl = "db/items.db";
+  databaseUrl = path.join(__dirname, 'db/items.db');
 
 var WWW = process.argv[2] || path.join(__dirname, 'www');
 var PORT = process.argv[3] || 3000;
@@ -17,7 +17,7 @@ var env = process.env.NODE_ENV || 'development';
 if ('development' == env) {} // dev mode
 
 app.set('port', process.env.PORT || PORT);
-  app.use(require('morgan')("combined"));
+  app.use(require('morgan')('combined'));
   app.use(require('body-parser').urlencoded({ extended:true }));
   app.use(require('body-parser').json());
   app.use(express.static(WWW));
@@ -32,13 +32,13 @@ app.get('/api/items', function (req, res) {
   });
 });
 
-app.post('/api/items', function (req, res) {
+app.put('/api/items', function (req, res) {
   var item = req.body;
   db.items.insert(item, function (err, result) {
     if (err) {
       res.send({'error':'An error has occurred'});
     } else {
-      console.log('Success: ' + JSON.stringify(result));
+      console.log('Created: ' + JSON.stringify(result));
       res.send(result);
     }
   });
