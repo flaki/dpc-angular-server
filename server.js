@@ -32,7 +32,14 @@ app.get('/api/items', function (req, res) {
   });
 });
 
-app.put('/api/items', function (req, res) {
+app.get('/api/items/:id', function (req, res) {
+  var id = req.params.id;
+  db.items.find({_id: id}, function(err, result) {
+    res.send(result[0]||'');
+  });
+});
+
+app.post('/api/items', function (req, res) {
   var item = req.body;
   db.items.insert(item, function (err, result) {
     if (err) {
@@ -44,6 +51,24 @@ app.put('/api/items', function (req, res) {
   });
 });
 
+app.put('/api/items/:id', function (req, res) {
+  var id = req.params.id;
+  var item = req.body;
+  console.log(item);
+  db.items.update({_id: id}, item, function (err, result) {
+    if (err) {
+      res.send({'error':'An error has occurred'});
+    } else {
+      console.log('Updated: ' + JSON.stringify(result));
+
+      db.items.find({_id: id}, function(err, result) {
+        console.log('Updated: ' + JSON.stringify(result));
+        res.send(result[0]);
+      });
+    }
+  });
+});
+
 app.delete('/api/items/:id', function (req, res) {
   var id = req.params.id;
   db.items.remove({_id: id}, {}, function (err, result) {
@@ -51,7 +76,8 @@ app.delete('/api/items/:id', function (req, res) {
       res.send({'error':'An error has occurred - ' + err});
     } else {
       console.log('' + result + ' document(s) deleted');
-      res.send(req.body);
+
+      res.send(result);
     }
   });
 });
