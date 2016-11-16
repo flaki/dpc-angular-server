@@ -1,7 +1,7 @@
 {
   "name": "dpc-angular-server",
   "description": "DPC Angular Server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "server.js",
   "node-remote": "<local>",

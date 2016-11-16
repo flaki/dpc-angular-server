@@ -77,7 +77,7 @@ app.delete('/api/items/:id', function (req, res) {
     } else {
       console.log('' + result + ' document(s) deleted');
 
-      res.send(result);
+      res.send({ deleted: result });
     }
   });
 });
